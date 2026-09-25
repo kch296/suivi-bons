@@ -25,7 +25,7 @@ PUBLICATION-GITHUB/
 
 ### 1. أنشئ المستودع
 1. افتح <https://github.com/new>
-2. **Repository name**: `suivi-des-bons`
+2. **Repository name**: `suivi-bons`
 3. **Public** ⚠️ (Pages مجانية للمستودعات العامة فقط)
 4. **Add a README file** ← ضع علامة ✅
 5. **Create repository**
@@ -45,7 +45,7 @@ PUBLICATION-GITHUB/
 
 ### 4. الرابط
 ```
-https://NOM_UTILISATEUR.github.io/suivi-des-bons/
+https://kch296.github.io/suivi-bons/
 ```
 
 **هذا رابطك الدائم. مجاني إلى الأبد، ما دام المستودع موجود.**
