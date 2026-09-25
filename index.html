@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3D348B">
+<title>تطبيق متابعة التوصيلات — Suivi des Bons</title>
+<meta name="description" content="تطبيق أندرويد لمتابعة وصولات التوصيل، يعمل بدون إنترنت. Application Android de suivi des bons de livraison, 100% hors ligne.">
+<style>
+  :root{
+    --primary:#8B7CFF; --primary-dark:#3D348B; --primary-light:#E5DFFF;
+    --accent:#22D3EE; --bg:#EEF1FB; --surface:#FFFFFF;
+    --text:#1A2140; --muted:#46507A; --line:#E3E8F6;
+    --ok:#0DA678; --warn:#E45757;
+    --radius:18px;
+    --shadow:0 6px 24px rgba(61,52,139,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12142A; --surface:#1C1F3D; --text:#EEF1FB; --muted:#A8B0D8;
+      --line:#2C3060; --primary-light:#2A2A55; --shadow:0 6px 24px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,"Noto Sans Arabic",Tahoma,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.7;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px 64px}
+
+  header{
+    background:linear-gradient(135deg,var(--primary-dark),#6B5BD6);
+    color:#fff;padding:40px 16px 72px;text-align:center;
+  }
+  header .wrap{padding-bottom:0}
+  .logo{
+    width:104px;height:104px;border-radius:26px;margin:0 auto 18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.28);background:#3D348B;
+  }
+  h1{font-size:28px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
+  .tag{font-size:15px;opacity:.9;font-weight:400}
+  .meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .pill{
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:600;
+  }
+
+  .card{
+    background:var(--surface);border-radius:var(--radius);padding:22px;
+    box-shadow:var(--shadow);margin-top:-40px;border:1px solid var(--line);
+  }
+  .card + .card{margin-top:16px}
+
+  h2{font-size:17px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  h2::before{content:"";width:4px;height:18px;background:var(--primary);border-radius:2px}
+
+  .btn{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    width:100%;padding:15px 18px;border-radius:14px;text-decoration:none;
+    font-weight:700;font-size:16px;margin-bottom:10px;border:1px solid transparent;
+    transition:transform .12s ease, filter .12s ease;
+  }
+  .btn:active{transform:scale(.985)}
+  .btn-primary{background:linear-gradient(135deg,var(--primary),#6B5BD6);color:#fff}
+  .btn-primary:hover{filter:brightness(1.06)}
+  .btn-ghost{background:var(--primary-light);color:var(--primary-dark);border-color:var(--line)}
+  .btn small{font-weight:500;opacity:.85;font-size:12.5px;display:block}
+
+  .rec{
+    background:rgba(34,211,238,.14);border:1px solid rgba(34,211,238,.4);
+    color:var(--text);border-radius:10px;padding:9px 13px;font-size:13.5px;
+    margin-bottom:14px;font-weight:600;
+  }
+
+  ol,ul{padding-inline-start:20px}
+  li{margin-bottom:9px}
+  li::marker{color:var(--primary);font-weight:700}
+  code{
+    background:var(--primary-light);color:var(--primary-dark);padding:2px 7px;
+    border-radius:6px;font-size:13px;direction:ltr;display:inline-block;
+  }
+  .fr{
+    background:var(--bg);border-inline-start:3px solid var(--accent);
+    border-radius:8px;padding:12px 14px;margin-top:12px;font-size:14px;color:var(--muted);
+  }
+  .fr b{color:var(--text)}
+
+  .feat{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+  .feat i{
+    flex:0 0 38px;height:38px;border-radius:11px;background:var(--primary-light);
+    display:grid;place-items:center;font-style:normal;font-size:19px;
+  }
+  .feat b{display:block;font-size:15px}
+  .feat span{font-size:13.5px;color:var(--muted)}
+
+  .shots{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  .shot{
+    aspect-ratio:9/16;border-radius:12px;border:1px dashed var(--line);
+    background:var(--bg);display:grid;place-items:center;color:var(--muted);
+    font-size:12px;text-align:center;padding:8px;
+  }
+
+  .note{
+    font-size:13px;color:var(--muted);background:var(--bg);
+    border-radius:10px;padding:12px 14px;margin-top:12px;
+  }
+  .ok{color:var(--ok);font-weight:700}
+  .warn{color:var(--warn);font-weight:700}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:28px;padding:0 16px}
+  a{color:var(--primary-dark)}
+  @media(prefers-color-scheme:dark){ a{color:var(--primary)} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img class="logo" src="downloads/icone-512x512.png" alt="شعار التطبيق" width="104" height="104">
+    <h1>متابعة التوصيلات</h1>
+    <p class="tag">Suivi des Bons — وصلات التوصيل، بدون إنترنت</p>
+    <div class="meta">
+      <span class="pill">الإصدار <span id="v">1.0</span></span>
+      <span class="pill">أندرويد <span id="sdk">7.0+</span></span>
+      <span class="pill">بدون إعلانات</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ التحميل ============ -->
+  <div class="card">
+    <h2>تحميل التطبيق</h2>
+
+    <div class="rec" id="recBox" style="display:none"></div>
+
+    <a class="btn btn-primary" id="dl-main" href="downloads/Suivi-des-Bons-v1.0-arm64.apk" download>
+      <span>تحميل الآن<small>24,8 ميغا — لأغلب الهواتف</small></span>
+      <span aria-hidden="true">⬇</span>
+    </a>
+
+    <a class="btn btn-ghost" id="dl-alt" href="downloads/Suivi-des-Bons-v1.0-arm32.apk" download>
+      <span id="dl-alt-label">نسخة 32 بت (18,8 م)</span>
+      <span aria-hidden="true">⬇</span>
+    </a>
+
+    <p class="note">
+      <b>أي ملف أختار؟</b><br>
+      إذا كان هاتفك من <b>2017 أو أحدث</b> → اختر <b>arm64</b> (الأصغر والأسرع).<br>
+      إذا كان قديئًا أو لا يعمل → جرّب <b>arm32</b>.<br>
+      غير متأكد؟ جرّب <b>arm64</b> أولًا، إن لم يُثبَّت جرّب الآخر.
+    </p>
+  </div>
+
+  <!-- ============ التثبيت ============ -->
+  <div class="card">
+    <h2>طريقة التثبيت</h2>
+    <ol>
+      <li>حمّل الملف من الزر أعلاه.</li>
+      <li>افتح مجلد <b>التنزيلات</b> في هاتفك.</li>
+      <li>اضغط على الملف. سيظهر تحذير «مصدر غير معروف» — هذا طبيعي.</li>
+      <li>من <b>الإعدادات ← الأمان</b> فعّل <code>تثبيت من مصادر غير معروف</code>.</li>
+      <li>ارجع واضغط <b>تثبيت</b>، ثم افتح التطبيق.</li>
+    </ol>
+
+    <div class="fr">
+      <b>Installation en français</b><br>
+      Téléchargez le fichier, ouvrez-le, puis autorisez
+      <b>Paramètres → Sécurité → Sources inconnues</b> le temps de l'installation.
+    </div>
+  </div>
+
+  <!-- ============ المزايا ============ -->
+  <div class="card">
+    <h2>ماذا يفعل التطبيق؟</h2>
+
+    <div class="feat">
+      <i>📷</i>
+      <div><b>مسح فوري للوصلات</b><span>صوّر وصل التوصيل، والتطبيق يقرأ الرقم والزبون والمبلغ تلقائيًا. يدعم العربية والفرنسية والإنجليزية.</span></div>
+    </div>
+    <div class="feat">
+      <i>👥</i>
+      <div><b>ملفات الزبائن</b><span>لكل زبون سجلّ كامل: التسليمات، المبالغ، معلومات الاتصال.</span></div>
+    </div>
+    <div class="feat">
+      <i>💰</i>
+      <div><b>مجموع اليوم</b><span>ما تحصّلته اليوم يُحسب تلقائيًا. لا نسيان في الحساب.</span></div>
+    </div>
+    <div class="feat">
+      <i>📄</i>
+      <div><b>تصدير PDF</b><span>أنشئ كشفًا وأرسله بالبريد أو عبر تطبيقات المراسلة.</span></div>
+    </div>
+    <div class="feat">
+      <i>🔒</i>
+      <div><b>يعمل بدون إنترنت</b><span>بياناتك تبقى على هاتفك. بدون حساب، بدون خوادم.</span></div>
+    </div>
+  </div>
+
+  <!-- ============ لقطات ============ -->
+  <div class="card">
+    <h2>لقطات من التطبيق</h2>
+    <div class="shots">
+      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(1)</div>
+      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(2)</div>
+      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(3)</div>
+      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(4)</div>
+    </div>
+    <p class="note">أضف لقطات حقيقية من هاتفك: <code>adb exec-out screencap -p &gt; shots/01.png</code></p>
+  </div>
+
+  <!-- ============ روابط ============ -->
+  <div class="card">
+    <h2>روابط مباشرة</h2>
+    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.0-arm64.apk" download><span>arm64 — 64 بت (الأكثر استعمالًا)<small>24,8 ميغا</small></span><span>⬇</span></a>
+    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.0-arm32.apk" download><span>arm32 — 32 بت (هواتف قديمة)<small>18,8 ميغا</small></span><span>⬇</span></a>
+  </div>
+  <p class="note">هاتفك لا يقبل أيٌّ من الملفين؟ اطلب نسخة موحّدة (70 ميغا) عبر البريد.</p>
+
+  <!-- ============ الخصوصية ============ -->
+  <div class="card">
+    <h2>الخصوصية</h2>
+    <p style="font-size:14px">
+      التطبيق لا يرسل أي بيانات إلى أي خادم. كل المعلومات تُحفظ على جهازك فقط،
+      وتُحذف نهائيًا عند حذف التطبيق.
+    </p>
+    <p class="note">
+      الأذونات المستعملة: <code>VIBRATE</code> (اهتزاز عند المسح) فقط.
+      <code>INTERNET</code> و <code>ACCESS_NETWORK_STATE</code> تُضاف تلقائيًا
+      من مكتبة ML Kit الخاصة بقارئ النص.
+    </p>
+  </div>
+
+  <footer>
+    <p><b>Suivi des Bons</b> — نسخة مجانية ومفتوحة الاستخدام</p>
+    <p style="margin-top:6px">تطبيق غير رسمي • distribué directement</p>
+  </footer>
+</div>
+
+<script>
+// Deux fichiers seulement : 64 bits (phones de 2017+) et 32 bits (anciens).
+// La version universelle (70 Mo) n'est volontairement pas hebergee : elle
+// depasse la limite d'upload de GitHub et personne ne peut l'installer.
+// On ne peut pas la telecharger depuis la page pour un appareil inconnu.
+const ARMB64 = "downloads/Suivi-des-Bons-v1.0-arm64.apk";
+const ARM32  = "downloads/Suivi-des-Bons-v1.0-arm32.apk";
+
+function pick(){
+  const main = document.getElementById("dl-main");
+  const alt  = document.getElementById("dl-alt");
+  const rec  = document.getElementById("recBox");
+
+  // 1) API haute entropie : seule source fiable cote architecture
+  if(navigator.userAgentData && navigator.userAgentData.getHighEntropyValues){
+    navigator.userAgentData.getHighEntropyValues(["architecture","bitness"])
+      .then(d=>{
+        if(d.architecture === "arm"){
+          main.href = ARMB64; alt.href = ARM32;
+          document.getElementById("dl-alt-label").textContent = "نسخة 32 بت";
+          rec.style.display="block";
+          rec.textContent = "تم اكتشاف هاتفك: نسخة 64 بت هي الأنسب لك.";
+        }
+      }).catch(()=>fallback());
+  } else {
+    fallback();
+  }
+
+  function fallback(){
+    // 2) Heuristique : tout appareil sans indice x86 est arm64 en 2026
+    main.href = ARMB64; alt.href = ARM32;
+    document.getElementById("dl-alt-label").textContent = "نسخة 32 بت";
+  }
+}
+pick();
+</script>
+</body>
+</html>

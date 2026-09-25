@@ -1,0 +1,8 @@
+﻿# Securite : ne JAMAIS versionner de secrets ici
+*.jks
+*.keystore
+*.p12
+gradle.properties
+local.properties
+keystore.properties
+play-service-account*.json
