@@ -94,12 +94,19 @@
   .feat b{display:block;font-size:15px}
   .feat span{font-size:13.5px;color:var(--muted)}
 
-  .shots{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
-  .shot{
-    aspect-ratio:9/16;border-radius:12px;border:1px dashed var(--line);
-    background:var(--bg);display:grid;place-items:center;color:var(--muted);
-    font-size:12px;text-align:center;padding:8px;
+  /* Carousel horizontal : ideal pour des captures verticales de telephone */
+  .shots{
+    display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:14px -22px 0;padding:4px 22px 8px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
   }
+  .shots::-webkit-scrollbar{display:none}
+  .shots img{
+    flex:0 0 auto;width:56%;max-width:250px;border-radius:14px;
+    scroll-snap-align:center;border:1px solid var(--line);
+    box-shadow:0 3px 14px rgba(61,52,139,.16);display:block;
+  }
+  .swipe{text-align:center;font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:600}
 
   .note{
     font-size:13px;color:var(--muted);background:var(--bg);
@@ -201,12 +208,13 @@
   <div class="card">
     <h2>لقطات من التطبيق</h2>
     <div class="shots">
-      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(1)</div>
-      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(2)</div>
-      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(3)</div>
-      <div class="shot">ضع هنا<br>لقطة الشاشة<br>(4)</div>
+      <img src="shots/01.jpg" width="500" height="1111" alt="الشاشة الرئيسية — قائمة الزبائن" loading="lazy">
+      <img src="shots/02.jpg" width="500" height="1111" alt="مسح وصل التوصيل" loading="lazy">
+      <img src="shots/03.jpg" width="500" height="1111" alt="تفاصيل ملف زبون" loading="lazy">
+      <img src="shots/04.jpg" width="500" height="1111" alt="كشف نهاية اليوم" loading="lazy">
+      <img src="shots/05.jpg" width="500" height="1111" alt="تصدير الكشف" loading="lazy">
     </div>
-    <p class="note">أضف لقطات حقيقية من هاتفك: <code>adb exec-out screencap -p &gt; shots/01.png</code></p>
+    <p class="swipe">← اسحب لمشاهدة المزيد →</p>
   </div>
 
   <!-- ============ روابط ============ -->
