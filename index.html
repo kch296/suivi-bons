@@ -171,13 +171,13 @@
 
     <div class="rec" id="recBox" style="display:none"></div>
 
-    <a class="btn btn-primary" id="dl-main" href="downloads/Suivi-des-Bons-v1.0-arm64.apk" download>
-      <span>تحميل الآن<small>24,8 ميغا — لأغلب الهواتف</small></span>
+    <a class="btn btn-primary" id="dl-main" href="downloads/Suivi-des-Bons-v1.1-arm64.apk" download>
+      <span>تحميل الآن<small>20,4 ميغا — لأغلب الهواتف · النسخة 1.1</small></span>
       <span aria-hidden="true">⬇</span>
     </a>
 
-    <a class="btn btn-ghost" id="dl-alt" href="downloads/Suivi-des-Bons-v1.0-arm32.apk" download>
-      <span id="dl-alt-label">نسخة 32 بت (18,8 م)</span>
+    <a class="btn btn-ghost" id="dl-alt" href="downloads/Suivi-des-Bons-v1.1-arm32.apk" download>
+      <span id="dl-alt-label">نسخة 32 بت (14,7 م)</span>
       <span aria-hidden="true">⬇</span>
     </a>
 
@@ -242,10 +242,12 @@
   <!-- ============ روابط ============ -->
   <div class="card">
     <h2>روابط مباشرة</h2>
-    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.0-arm64.apk" download><span>arm64 — 64 بت (الأكثر استعمالًا)<small>24,8 ميغا</small></span><span>⬇</span></a>
-    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.0-arm32.apk" download><span>arm32 — 32 بت (هواتف قديمة)<small>18,8 ميغا</small></span><span>⬇</span></a>
+    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.1-arm64.apk" download><span>arm64 — 64 بت (الأكثر استعمالًا)<small>20,4 ميغا · النسخة 1.1</small></span><span>⬇</span></a>
+    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.1-arm32.apk" download><span>arm32 — 32 بت (هواتف قديمة)<small>14,7 ميغا · النسخة 1.1</small></span><span>⬇</span></a>
+    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.0-arm64.apk" download><span>النسخة السابقة 1.0 — عند تعطّل 1.1<small>20,4 ميغا</small></span><span>⬇</span></a>
+    <a class="btn btn-ghost" href="downloads/Suivi-des-Bons-v1.0-arm32.apk" download><span>النسخة السابقة 1.0 — 32 بت<small>14,7 ميغا</small></span><span>⬇</span></a>
   </div>
-  <p class="note">هاتفك لا يقبل أيٌّ من الملفين؟ اطلب نسخة موحّدة (70 ميغا) عبر البريد.</p>
+  <p class="note">هاتفك لا يقبل أيٌّ من الملفين؟ اطلب نسخة موحّدة (64 ميغا) عبر البريد.</p>
 
   <!-- ============ الخصوصية ============ -->
   <div class="card">
@@ -272,8 +274,8 @@
 // La version universelle (70 Mo) n'est volontairement pas hebergee : elle
 // depasse la limite d'upload de GitHub et personne ne peut l'installer.
 // On ne peut pas la telecharger depuis la page pour un appareil inconnu.
-const ARMB64 = "downloads/Suivi-des-Bons-v1.0-arm64.apk";
-const ARM32  = "downloads/Suivi-des-Bons-v1.0-arm32.apk";
+const ARMB64 = "downloads/Suivi-des-Bons-v1.1-arm64.apk";
+const ARM32  = "downloads/Suivi-des-Bons-v1.1-arm32.apk";
 
 function pick(){
   const main = document.getElementById("dl-main");
